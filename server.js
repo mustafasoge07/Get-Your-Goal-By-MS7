@@ -178,6 +178,12 @@ app.get('/{*splat}', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'githubsoge.html'));
 });
 
+app.use(express.static(path.join(__dirname)));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 async function start() {
   await initDb();
   app.listen(PORT, () => console.log(`Get Your Goals running on port ${PORT} with Neon PostgreSQL`));
